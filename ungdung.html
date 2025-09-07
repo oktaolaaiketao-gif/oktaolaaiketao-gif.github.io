@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng dụng Quản lý Công việc</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1c1c2b;
+            color: #d8cce3;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #9ca3af;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #2a1a40;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ffd700;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #e6c200;
+        }
+        @keyframes title-glow {
+            from {
+                text-shadow: 0 0 5px #fff176, 0 0 10px #fff176;
+            }
+            to {
+                text-shadow: 0 0 10px #fff176, 0 0 20px #fff176, 0 0 30px #fff176;
+            }
+        }
+        .title-glow {
+            animation: title-glow 1.5s infinite alternate;
+        }
+        .draggable.dragging {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="bg-[#2a1a40] p-6 md:p-10 rounded-xl shadow-lg w-full max-w-xl">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-[#ffd700] mb-6 title-glow">Ứng dụng Quản lý Công việc</h1>
+        
+        <!-- Form thêm công việc mới -->
+        <div class="flex items-center space-x-2 mb-4">
+            <input 
+                type="text" 
+                id="task-input" 
+                placeholder="Thêm một công việc mới..." 
+                class="flex-1 p-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ffd700] bg-gray-800 text-white"
+            >
+            <select id="category-select" class="p-3 border border-gray-700 rounded-lg bg-gray-800 text-white">
+                <option value="Công việc">Công việc</option>
+                <option value="Cá nhân">Cá nhân</option>
+                <option value="Học tập">Học tập</option>
+                <option value="Khác">Khác</option>
+            </select>
+            <button 
+                id="add-task-btn" 
+                class="bg-[#ffd700] hover:bg-[#e6c200] text-black font-semibold py-3 px-6 rounded-lg transition duration-200 ease-in-out shadow-md"
+            >
+                Thêm
+            </button>
+        </div>
+
+        <!-- Bộ lọc và thống kê -->
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex space-x-2">
+                <button id="filter-all" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg">Tất cả</button>
+                <button id="filter-completed" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg">Đã hoàn thành</button>
+                <button id="filter-pending" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg">Chưa hoàn thành</button>
+            </div>
+            <button id="clear-completed" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg">Xóa đã hoàn thành</button>
+        </div>
+        <p class="text-sm text-gray-400 mb-4">Tổng số công việc: <span id="task-count">0</span></p>
+
+        <!-- Danh sách công việc -->
+        <ul id="task-list" class="space-y-3 max-h-[40vh] overflow-y-auto custom-scrollbar"></ul>
+    </div>
+
+    <script>
+        const taskInput = document.getElementById('task-input');
+        const categorySelect = document.getElementById('category-select');
+        const addTaskBtn = document.getElementById('add-task-btn');
+        const taskList = document.getElementById('task-list');
+        const filterAll = document.getElementById('filter-all');
+        const filterCompleted = document.getElementById('filter-completed');
+        const filterPending = document.getElementById('filter-pending');
+        const clearCompleted = document.getElementById('clear-completed');
+        const taskCount = document.getElementById('task-count');
+        const colors = [
+            'bg-yellow-100',
+            'bg-green-100',
+            'bg-blue-100',
+            'bg-purple-100',
+            'bg-red-100'
+        ];
+
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        let currentFilter = 'all';
+
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            updateTaskCount();
+        }
+
+        function updateTaskCount() {
+            const visibleTasks = getFilteredTasks();
+            taskCount.textContent = visibleTasks.length;
+        }
+
+        function getFilteredTasks() {
+            if (currentFilter === 'completed') {
+                return tasks.filter(task => task.completed);
+            } else if (currentFilter === 'pending') {
+                return tasks.filter(task => !task.completed);
+            }
+            return tasks;
+        }
+
+        function renderTasks() {
+            taskList.innerHTML = '';
+            const filteredTasks = getFilteredTasks();
+            filteredTasks.forEach((task, index) => {
+                const newTaskElement = createNewTaskElement(task.text, task.completed, task.color, task.category, task.id);
+                taskList.appendChild(newTaskElement);
+            });
+            setupDragAndDrop();
+        }
+
+        function createNewTaskElement(taskText, isCompleted, taskColor, category, taskId) {
+            const listItem = document.createElement('li');
+            listItem.className = `flex items-center justify-between p-4 ${taskColor} rounded-lg shadow-sm transition-transform transform hover:scale-[1.01] draggable`;
+            listItem.draggable = true;
+            listItem.dataset.id = taskId;
+
+            const contentContainer = document.createElement('div');
+            contentContainer.className = 'flex items-center space-x-4 flex-1';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = isCompleted;
+            checkbox.className = 'form-checkbox h-5 w-5 text-blue-600 rounded-full focus:ring-2 focus:ring-blue-500';
+
+            const taskSpan = document.createElement('span');
+            taskSpan.textContent = `${taskText} (${category})`;
+            taskSpan.className = `text-gray-800 text-lg flex-1 ${isCompleted ? 'completed' : ''}`;
+
+            const editInput = document.createElement('input');
+            editInput.type = 'text';
+            editInput.value = taskText;
+            editInput.className = `flex-1 p-1 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 hidden`;
+
+            const taskIndex = tasks.findIndex(task => task.id === taskId);
+            checkbox.addEventListener('change', () => {
+                tasks[taskIndex].completed = checkbox.checked;
+                taskSpan.classList.toggle('completed', checkbox.checked);
+                saveTasks();
+                renderTasks();
+            });
+
+            contentContainer.appendChild(checkbox);
+            contentContainer.appendChild(taskSpan);
+            contentContainer.appendChild(editInput);
+
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = 'flex items-center space-x-2';
+
+            const editBtn = document.createElement('button');
+            editBtn.textContent = 'Chỉnh sửa';
+            editBtn.className = 'bg-gray-400 hover:bg-gray-500 text-white text-sm font-medium py-2 px-4 rounded-lg transition duration-200 ease-in-out';
+
+            editBtn.addEventListener('click', () => {
+                if (editBtn.textContent === 'Chỉnh sửa') {
+                    taskSpan.classList.add('hidden');
+                    editInput.classList.remove('hidden');
+                    editInput.focus();
+                    editBtn.textContent = 'Lưu';
+                } else {
+                    const newText = editInput.value.trim();
+                    if (newText !== '') {
+                        tasks[taskIndex].text = newText;
+                        taskSpan.textContent = `${newText} (${category})`;
+                        saveTasks();
+                    }
+                    taskSpan.classList.remove('hidden');
+                    editInput.classList.add('hidden');
+                    editBtn.textContent = 'Chỉnh sửa';
+                }
+            });
+
+            editInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    editBtn.click();
+                }
+            });
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Xóa';
+            deleteBtn.className = 'bg-red-500 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition duration-200 ease-in-out';
+
+            deleteBtn.addEventListener('click', () => {
+                tasks = tasks.filter(task => task.id !== taskId);
+                saveTasks();
+                renderTasks();
+            });
+
+            buttonContainer.appendChild(editBtn);
+            buttonContainer.appendChild(deleteBtn);
+
+            listItem.appendChild(contentContainer);
+            listItem.appendChild(buttonContainer);
+
+            return listItem;
+        }
+
+        function addTask() {
+            const taskText = taskInput.value.trim();
+            if (taskText !== '') {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                const taskId = Date.now().toString();
+                tasks.push({ 
+                    text: taskText, 
+                    completed: false, 
+                    color: randomColor, 
+                    category: categorySelect.value,
+                    id: taskId 
+                });
+                saveTasks();
+                renderTasks();
+                taskInput.value = '';
+            }
+        }
+
+        function setupDragAndDrop() {
+            const draggables = document.querySelectorAll('.draggable');
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', () => {
+                    draggable.classList.add('dragging');
+                });
+                draggable.addEventListener('dragend', () => {
+                    draggable.classList.remove('dragging');
+                });
+            });
+
+            taskList.addEventListener('dragover', e => {
+                e.preventDefault();
+                const afterElement = getDragAfterElement(taskList, e.clientY);
+                const dragging = document.querySelector('.dragging');
+                if (afterElement == null) {
+                    taskList.appendChild(dragging);
+                } else {
+                    taskList.insertBefore(dragging, afterElement);
+                }
+                updateTaskOrder();
+            });
+        }
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        function updateTaskOrder() {
+            const taskElements = taskList.querySelectorAll('.draggable');
+            const newTasks = [];
+            taskElements.forEach(element => {
+                const taskId = element.dataset.id;
+                const task = tasks.find(t => t.id === taskId);
+                if (task) newTasks.push(task);
+            });
+            tasks = newTasks;
+            saveTasks();
+        }
+
+        addTaskBtn.addEventListener('click', addTask);
+        taskInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                addTask();
+            }
+        });
+
+        filterAll.addEventListener('click', () => {
+            currentFilter = 'all';
+            renderTasks();
+        });
+
+        filterCompleted.addEventListener('click', () => {
+            currentFilter = 'completed';
+            renderTasks();
+        });
+
+        filterPending.addEventListener('click', () => {
+            currentFilter = 'pending';
+            renderTasks();
+        });
+
+        clearCompleted.addEventListener('click', () => {
+            tasks = tasks.filter(task => !task.completed);
+            saveTasks();
+            renderTasks();
+        });
+
+        renderTasks();
+    </script>
+</body>
+</html>

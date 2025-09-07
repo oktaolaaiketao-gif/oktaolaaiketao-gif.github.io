@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Học cách tối ưu hóa website cho thiết bị di động để nâng cao trải nghiệm người dùng và cải thiện SEO.">
+  <meta name="keywords" content="tối ưu hóa website, thiết kế responsive, SEO di động, tốc độ tải trang">
+  <meta name="author" content="Tối ưu hóa Website">
+  <title>Tối ưu hóa Website cho Di động</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+        --dark-purple: #1c1c2b;
+  --deep-purple: #2a1a40;
+  --gold: #ffd700;
+  --gold-light: #fff176;
+  --gold-hover: #e6c200;
+  --soft-white: #e6c200;
+  --bar-purple: #2a003d;
+  --accent-purple: #6d28d9;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, var(--dark-purple) 0%, var(--deep-purple) 100%);
+      color: var(--soft-white);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      margin: 0;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--deep-purple);
+      padding: 1rem 2rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold) !important;
+      text-shadow: 0 0 10px var(--gold-light), 0 0 2px rgba(0, 0, 0, 0.5); /* Added subtle shadow for readability */
+    }
+
+    .nav-link {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--gold) !important;
+      margin: 0 1rem;
+      position: relative;
+      transition: all 0.3s ease;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for better contrast */
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold-light);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: var(--gold-light) !important;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--accent-purple) 0%, var(--dark-purple) 100%);
+      overflow: hidden;
+    }
+    p { color: #e6c200; }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.15), transparent 70%);
+      animation: auroraGlow 15s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .hero-section .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-section h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-shadow: 0 0 15px var(--gold-light), 0 0 2px rgba(0, 0, 0, 0.7); /* Enhanced shadow for readability */
+      animation: textPulse 2s infinite alternate;
+    }
+
+    .hero-section .lead {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for better contrast */
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: var(--gold);
+      border: none;
+      color: var(--dark-purple);
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      transition: all 0.3s ease;
+      text-shadow: none; /* No shadow needed due to high contrast */
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-hover);
+      box-shadow: 0 0 20px var(--gold-light);
+      color: var(--dark-purple);
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      position: relative;
+      margin-bottom: 2rem;
+      text-align: center;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.7); /* Subtle shadow for readability */
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      animation: waveLight 3s linear infinite;
+    }
+
+    /* About Section */
+    .about-section p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--soft-white);
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
+    }
+
+    .card {
+      background: var(--deep-purple);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
+    }
+
+    .card p {
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bar-purple);
+      padding: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), transparent);
+      animation: noiseAnimation 3s infinite alternate;
+    }
+
+    .footer p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--soft-white); /* Changed to pure white for better contrast */
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
+    }
+
+    .footer a {
+      color: var(--gold);
+      text-decoration: none;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
+    }
+
+    .footer a:hover {
+      color: var(--gold-light);
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--gold);
+      color: var(--dark-purple);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: var(--gold-hover);
+      transform: translateY(-5px);
+    }
+
+    /* Animations */
+    @keyframes auroraGlow {
+      0%, 100% { transform: translate(-10%, -10%) rotate(45deg); opacity: 0.3; }
+      50% { transform: translate(10%, 10%) rotate(45deg); opacity: 0.6; }
+    }
+
+    @keyframes textPulse {
+      0% { text-shadow: 0 0 10px var(--gold), 0 0 2px rgba(0, 0, 0, 0.7); }
+      100% { text-shadow: 0 0 20px var(--gold-light), 0 0 2px rgba(0, 0, 0, 0.7); }
+    }
+
+    @keyframes waveLight {
+      0% { background-position: -200px 0; }
+      100% { background-position: 200px 0; }
+    }
+
+    @keyframes noiseAnimation {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-10px, -10px); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+
+      .hero-section .lead {
+        font-size: 1rem;
+      }
+
+      .navbar-brand {
+        font-size: 1.5rem;
+      }
+
+      .nav-link {
+        font-size: 1rem;
+        margin: 0.5rem 0;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .card h3 {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-section {
+        padding: 60px 0;
+      }
+
+      .hero-section h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .btn-primary {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Tối ưu hóa Website</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#introduction" aria-label="Giới thiệu về tối ưu hóa website">Giới thiệu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tips" aria-label="Mẹo tối ưu hóa website cho di động">Mẹo tối ưu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#techniques" aria-label="Kỹ thuật tối ưu hóa website">Kỹ thuật</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="container text-center">
+      <h1>Tối ưu hóa Website cho Di động</h1>
+      <p class="lead mt-3">Tạo giao diện thân thiện với mọi thiết bị để nâng cao trải nghiệm người dùng.</p>
+      <a href="#tips" class="btn btn-primary mt-4" aria-label="Khám phá các mẹo tối ưu hóa website">Khám phá ngay</a>
+    </div>
+  </section>
+
+  <!-- Introduction Section -->
+  <section id="introduction" class="about-section py-5">
+    <div class="container">
+      <h2 class="section-title">Giới thiệu</h2>
+      <p class="text-center">Trong thời đại công nghệ số, việc tối ưu hóa website cho thiết bị di động không chỉ là xu hướng mà còn là yếu tố sống còn để thu hút và giữ chân người dùng. Một website thân thiện với di động giúp cải thiện trải nghiệm người dùng, tăng tốc độ tải trang, và nâng cao thứ hạng trên công cụ tìm kiếm.</p>
+    </div>
+  </section>
+
+  <!-- Tips Section -->
+  <section id="tips" class="py-5">
+    <div class="container">
+      <h2 class="section-title">Mẹo Tối ưu hóa Website cho Di động</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card p-4 text-center">
+            <h3>Thiết kế Responsive</h3>
+            <p>Sử dụng thiết kế responsive để đảm bảo giao diện website tự động điều chỉnh phù hợp với mọi kích thước màn hình.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card p-4 text-center">
+            <h3>Tối ưu Tốc độ Tải</h3>
+            <p>Nén hình ảnh, sử dụng lazy loading, và giảm thiểu mã CSS/JS để tăng tốc độ tải trang.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card p-4 text-center">
+            <h3>Điều hướng Thân thiện</h3>
+            <p>Thiết kế menu điều hướng đơn giản, dễ sử dụng trên màn hình cảm ứng với các nút lớn và khoảng cách hợp lý.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Techniques Section -->
+  <section id="techniques" class="py-5">
+    <div class="container">
+      <h2 class="section-title">Kỹ thuật Tối ưu hóa</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card p-4">
+            <h3>Sử dụng Media Queries</h3>
+            <p>Áp dụng CSS media queries để tùy chỉnh giao diện dựa trên kích thước và độ phân giải của thiết bị.</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card p-4">
+            <h3>Tối ưu Hình ảnh</h3>
+            <p>Sử dụng định dạng hình ảnh hiện đại như WebP và triển khai responsive images với thuộc tính <code>srcset</code>.</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card p-4">
+            <h3>AMP (Accelerated Mobile Pages)</h3>
+            <p>Sử dụng AMP để tạo các trang web tải nhanh trên di động với nội dung được tối ưu hóa.</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card p-4">
+            <h3>Kiểm tra trên Nhiều Thiết bị</h3>
+            <p>Thử nghiệm website trên các thiết bị và trình duyệt khác nhau để đảm bảo tính nhất quán.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <p>&copy; 2025 Tối ưu hóa Website. All rights reserved.</p>
+      <p class="mt-2">
+        <a href="#hero" aria-label="Liên hệ với chúng tôi">Liên hệ</a> | 
+        <a href="#hero" aria-label="Chính sách bảo mật">Chính sách bảo mật</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#hero" class="back-to-top" aria-label="Quay lại đầu trang">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 5l-7 7h5v7h4v-7h5l-7-7z"/>
+    </svg>
+  </a>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Back to Top Script -->
+  <script>
+    window.addEventListener('scroll', function() {
+      const backToTop = document.querySelector('.back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+  </script>
+</body>
+</html>

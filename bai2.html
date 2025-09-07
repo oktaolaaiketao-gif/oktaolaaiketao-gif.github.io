@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Hướng dẫn tối ưu hóa website cho thiết bị di động để nâng cao trải nghiệm người dùng và cải thiện thứ hạng SEO.">
+  <meta name="keywords" content="tối ưu hóa website, responsive design, mobile optimization, SEO, tốc độ tải trang">
+  <meta name="author" content="Tối ưu hóa Website">
+  <title>Tối ưu hóa Website cho Di động</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" media="print" onload="this.media='all'">
+  <style>
+    :root {
+      --dark-purple: #1c1c2b;
+      --deep-purple: #2a1a40;
+      --gold: #ffd700;
+      --gold-light: #fff176;
+      --gold-hover: #e6c200;
+      --soft-white: #f5f5f5;
+      --bar-purple: #2a003d;
+      --accent-purple: #6d28d9;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, var(--dark-purple) 0%, var(--deep-purple) 100%);
+      color: var(--soft-white);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      margin: 0;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--deep-purple);
+      padding: 1rem 2rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold) !important;
+      text-shadow: 0 0 10px var(--gold-light);
+    }
+
+    .nav-link {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--gold) !important;
+      margin: 0 1rem;
+      position: relative;
+      transition: all 0.3s ease;
+      touch-action: manipulation;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold-light);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--gold-light) !important;
+      transform: translateY(-2px);
+    }
+
+    .navbar-toggler {
+      border: none;
+      color: var(--gold);
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 215, 0, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--accent-purple) 0%, var(--dark-purple) 100%);
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.15), transparent 70%);
+      animation: auroraGlow 15s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .hero-section .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-section h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-shadow: 0 0 15px var(--gold-light);
+      animation: textPulse 2s infinite alternate;
+    }
+
+    .hero-section .lead {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: var(--gold);
+      border: none;
+      color: var(--dark-purple);
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      transition: all 0.3s ease;
+      touch-action: manipulation;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-hover);
+      box-shadow: 0 0 20px var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      position: relative;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      animation: waveLight 3s linear infinite;
+    }
+
+    /* About Section */
+    .about-section p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--soft-white);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--deep-purple);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      padding: 1.5rem;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: var(--soft-white);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bar-purple);
+      padding: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), transparent);
+      animation: noiseAnimation 3s infinite alternate;
+    }
+
+    .footer p {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--soft-white);
+    }
+
+    /* Animations */
+    @keyframes auroraGlow {
+      0%, 100% { transform: translate(-10%, -10%) rotate(45deg); opacity: 0.3; }
+      50% { transform: translate(10%, 10%) rotate(45deg); opacity: 0.6; }
+    }
+
+    @keyframes textPulse {
+      0% { text-shadow: 0 0 10px var(--gold); }
+      100% { text-shadow: 0 0 20px var(--gold-light); }
+    }
+
+    @keyframes waveLight {
+      0% { background-position: -200px 0; }
+      100% { background-position: 200px 0; }
+    }
+
+    @keyframes noiseAnimation {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-10px, -10px); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 60px 0;
+      }
+
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+
+      .hero-section .lead {
+        font-size: 1rem;
+      }
+
+      .navbar-brand {
+        font-size: 1.5rem;
+      }
+
+      .nav-link {
+        font-size: 1rem;
+        margin: 0.5rem 0;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .card {
+        padding: 1rem;
+      }
+
+      .btn-primary {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-section h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
+
+      .card h3 {
+        font-size: 1.3rem;
+      }
+
+      .card p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand" href="#">Tối ưu hóa Website</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#introduction" aria-current="page">Giới thiệu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#tips">Mẹo tối ưu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#techniques">Kỹ thuật</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero" aria-labelledby="hero-title">
+    <div class="container text-center">
+      <h1 id="hero-title">Tối ưu hóa Website cho Di động</h1>
+      <p class="lead mt-3">Tạo giao diện thân thiện với mọi thiết bị để nâng cao trải nghiệm người dùng.</p>
+      <a href="#tips" class="btn btn-primary mt-4">Khám phá ngay</a>
+    </div>
+  </section>
+
+  <!-- Introduction Section -->
+  <section id="introduction" class="about-section py-5" aria-labelledby="intro-title">
+    <div class="container">
+      <h2 class="section-title" id="intro-title">Giới thiệu</h2>
+      <p class="text-center">Trong thời đại công nghệ số, việc tối ưu hóa website cho thiết bị di động không chỉ là xu hướng mà còn là yếu tố sống còn để thu hút và giữ chân người dùng. Một website thân thiện với di động giúp cải thiện trải nghiệm người dùng, tăng tốc độ tải trang, và nâng cao thứ hạng trên công cụ tìm kiếm.</p>
+    </div>
+  </section>
+
+  <!-- Tips Section -->
+  <section id="tips" class="py-5" aria-labelledby="tips-title">
+    <div class="container">
+      <h2 class="section-title" id="tips-title">Mẹo Tối ưu hóa Website cho Di động</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card text-center" role="article">
+            <h3>Thiết kế Responsive</h3>
+            <p>Sử dụng thiết kế responsive để đảm bảo giao diện website tự động điều chỉnh phù hợp với mọi kích thước màn hình.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card text-center" role="article">
+            <h3>Tối ưu Tốc độ Tải</h3>
+            <p>Nén hình ảnh, sử dụng lazy loading, và giảm thiểu mã CSS/JS để tăng tốc độ tải trang.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card text-center" role="article">
+            <h3>Điều hướng Thân thiện</h3>
+            <p>Thiết kế menu điều hướng đơn giản, dễ sử dụng trên màn hình cảm ứng với các nút lớn và khoảng cách hợp lý.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Techniques Section -->
+  <section id="techniques" class="py-5" aria-labelledby="techniques-title">
+    <div class="container">
+      <h2 class="section-title" id="techniques-title">Kỹ thuật Tối ưu hóa</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card" role="article">
+            <h3>Sử dụng Media Queries</h3>
+            <p>Áp dụng CSS media queries để tùy chỉnh giao diện dựa trên kích thước và độ phân giải của thiết bị.</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card" role="article">
+            <h3>Tối ưu Hình ảnh</h3>
+            <p>Sử dụng định dạng hình ảnh hiện đại như WebP và triển khai responsive images với thuộc tính <code>srcset</code>.</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card" role="article">
+            <h3>AMP (Accelerated Mobile Pages)</h3>
+            <p>Sử dụng AMP để tạo các trang web tải nhanh trên di động với nội dung được tối ưu hóa.</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card" role="article">
+            <h3>Kiểm tra trên Nhiều Thiết bị</h3>
+            <p>Thử nghiệm website trên các thiết bị và trình duyệt khác nhau để đảm bảo tính nhất quán.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center" aria-label="Footer">
+    <div class="container">
+      <p>&copy; 2025 Tối ưu hóa Website. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS and Custom Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script>
+    // Smooth scrolling for nav links
+    document.querySelectorAll('.nav-link').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Dynamic navbar active state
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 60) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng Dẫn Cơ Bản Về HTML và CSS</title>
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome 6.0.0-beta3 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous">
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-purple: #1c1c2b;
+            --deep-purple: #2a1a40;
+            --gold: #ffd700;
+            --gold-light: #fff176;
+            --soft-white: #f5f5f5;
+            --accent-purple: #6d28d9;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, var(--dark-purple) 0%, var(--deep-purple) 100%);
+            color: var(--soft-white);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--dark-purple) 100%);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .header-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-shadow: 0 0 15px var(--gold-light);
+            animation: textPulse 2s infinite alternate;
+        }
+
+        .header-section .lead {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: auto;
+            color: var(--soft-white);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        .card {
+            background: var(--deep-purple);
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .card-header {
+            background-color: var(--dark-purple);
+            font-weight: bold;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            color: var(--gold);
+        }
+
+        .card-body p, .card-body ul {
+            color: var(--soft-white);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        pre {
+            background-color: var(--dark-purple);
+            color: #ffffff;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid var(--accent-purple);
+        }
+
+        pre code {
+            color: #ffffff;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .footer-section {
+            background: var(--deep-purple);
+            color: var(--soft-white);
+            padding: 2rem 0;
+            border-top: 1px solid var(--gold);
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--soft-white);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-purple);
+            color: var(--gold);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--gold);
+            color: var(--deep-purple);
+        }
+
+        @keyframes textPulse {
+            0% {
+                text-shadow: 0 0 10px var(--gold);
+            }
+
+            100% {
+                text-shadow: 0 0 20px var(--gold-light);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header-section text-center">
+        <div class="container">
+            <h1>Hướng Dẫn Cơ Bản Về HTML và CSS</h1>
+            <p class="lead">Tìm hiểu những kiến thức nền tảng để xây dựng trang web đầu tiên của bạn.</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="gioi-thieu" class="content-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>1. HTML là gì?</h2>
+                        <p><strong>HTML</strong> (HyperText Markup Language) là ngôn ngữ đánh dấu được sử dụng để tạo cấu trúc và nội dung cho các trang web. HTML không phải là một ngôn ngữ lập trình, nó chỉ định nghĩa các thành phần như tiêu đề, đoạn văn, hình ảnh và liên kết.</p>
+                        <p>Mỗi trang HTML được xây dựng từ các <strong>thẻ (tags)</strong>. Ví dụ: <code>&lt;h1&gt;</code> cho tiêu đề lớn, <code>&lt;p&gt;</code> cho đoạn văn, và <code>&lt;a&gt;</code> cho liên kết.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="the-html" class="content-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>2. Các Thẻ HTML Cơ Bản</h2>
+                        <div class="card my-3">
+                            <div class="card-header">
+                                Cấu trúc cơ bản của một trang HTML
+                            </div>
+                            <div class="card-body">
+                                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="vi"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Tiêu đề trang&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Nội dung của trang web --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="card my-3">
+                            <div class="card-header">
+                                Các thẻ HTML thông dụng
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><code>&lt;h1&gt;</code> đến <code>&lt;h6&gt;</code>: Các thẻ tiêu đề.</li>
+                                    <li><code>&lt;p&gt;</code>: Đoạn văn bản.</li>
+                                    <li><code>&lt;a&gt;</code>: Liên kết (hyperlink).</li>
+                                    <li><code>&lt;img&gt;</code>: Hình ảnh. <em>(Lưu ý: Luôn thêm thuộc tính <code>alt</code> để đảm bảo tính truy cập.)</em></li>
+                                    <li><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>: Danh sách.</li>
+                                    <li><code>&lt;div&gt;</code> và <code>&lt;span&gt;</code>: Các thẻ chứa nội dung.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="css-la-gi" class="content-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>3. CSS là gì?</h2>
+                        <p><strong>CSS</strong> (Cascading Style Sheets) là ngôn ngữ được dùng để tạo kiểu cho các thành phần HTML. Nó giúp trang web của bạn trở nên đẹp mắt và có bố cục hợp lý hơn. Với CSS, bạn có thể thay đổi màu sắc, phông chữ, kích thước, và vị trí của các phần tử.</p>
+                        <p>Có ba cách để thêm CSS vào trang web:</p>
+                        <ul>
+                            <li><strong>Inline CSS:</strong> Viết trực tiếp vào thẻ HTML bằng thuộc tính <code>style</code>.</li>
+                            <li><strong>Internal CSS:</strong> Viết trong thẻ <code>&lt;style&gt;</code> ở phần <code>&lt;head&gt;</code>.</li>
+                            <li><strong>External CSS:</strong> Viết trong một file <code>.css</code> riêng biệt và liên kết đến nó bằng thẻ <code>&lt;link&gt;</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="vi-du-css" class="content-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>4. Ví dụ về CSS</h2>
+                        <p>Dưới đây là một ví dụ về cách áp dụng CSS để thay đổi màu chữ và phông chữ.</p>
+                        <div class="card my-3">
+                            <div class="card-header">
+                                Ví dụ Internal CSS
+                            </div>
+                            <div class="card-body">
+                                <pre><code>&lt;head&gt;
+    &lt;style&gt;
+        h1 {
+            color: #007bff;
+            font-family: Arial, sans-serif;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Tiêu đề trang&lt;/h1&gt;
+    &lt;p&gt;Đây là một đoạn văn bản được tạo kiểu bằng CSS.&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section text-center">
+        <div class="container">
+            <p>&copy; 2025 Thạch Thanh Tiền. Bản quyền thuộc về tôi.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Quay lại đầu trang">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap 5.3.3 JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script>
+        document.querySelector('.back-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>
