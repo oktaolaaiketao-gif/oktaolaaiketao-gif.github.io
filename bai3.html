@@ -1,25 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Học cách tối ưu hóa website cho thiết bị di động để nâng cao trải nghiệm người dùng và cải thiện SEO.">
-  <meta name="keywords" content="tối ưu hóa website, thiết kế responsive, SEO di động, tốc độ tải trang">
-  <meta name="author" content="Tối ưu hóa Website">
-  <title>Tối ưu hóa Website cho Di động</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sức mạnh của JavaScript trong lập trình web</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-        --dark-purple: #1c1c2b;
-  --deep-purple: #2a1a40;
-  --gold: #ffd700;
-  --gold-light: #fff176;
-  --gold-hover: #e6c200;
-  --soft-white: #e6c200;
-  --bar-purple: #2a003d;
-  --accent-purple: #6d28d9;
+      --dark-purple: #1c1c2b;
+      --deep-purple: #2a1a40;
+      --gold: #ffd700;
+      --gold-light: #fff176;
+      --gold-hover: #e6c200;
+      --soft-white: #e6c200;
+      --bar-purple: #2a003d;
+      --accent-purple: #6d28d9;
     }
 
     body {
@@ -37,13 +35,25 @@
       padding: 1rem 2rem;
       transition: all 0.4s ease;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
 
     .navbar-brand {
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--gold) !important;
-      text-shadow: 0 0 10px var(--gold-light), 0 0 2px rgba(0, 0, 0, 0.5); /* Added subtle shadow for readability */
+      text-shadow: 0 0 10px var(--gold-light), 0 0 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
     .nav-link {
@@ -53,7 +63,8 @@
       margin: 0 1rem;
       position: relative;
       transition: all 0.3s ease;
-      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for better contrast */
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
     }
 
     .nav-link::after {
@@ -82,6 +93,7 @@
       padding: 80px 0;
       background: linear-gradient(135deg, var(--accent-purple) 0%, var(--dark-purple) 100%);
       overflow: hidden;
+      text-align: center;
     }
     p { color: #e6c200; }
 
@@ -100,22 +112,30 @@
     .hero-section .container {
       position: relative;
       z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
     }
 
     .hero-section h1 {
       font-size: 2.5rem;
       font-weight: 700;
       color: var(--gold);
-      text-shadow: 0 0 15px var(--gold-light), 0 0 2px rgba(0, 0, 0, 0.7); /* Enhanced shadow for readability */
+      text-shadow: 0 0 15px var(--gold-light), 0 0 2px rgba(0, 0, 0, 0.7);
       animation: textPulse 2s infinite alternate;
+      margin: 0 0 1rem 0;
     }
 
     .hero-section .lead {
       font-size: 1.1rem;
-      max-width: 600px;
+      max-width: 800px;
       margin-left: auto;
       margin-right: auto;
-      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for better contrast */
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-cta {
+      margin-top: 1.5rem;
     }
 
     /* Buttons */
@@ -126,7 +146,9 @@
       font-weight: 600;
       padding: 0.75rem 1.5rem;
       transition: all 0.3s ease;
-      text-shadow: none; /* No shadow needed due to high contrast */
+      text-shadow: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
 
     .btn-primary:hover {
@@ -135,7 +157,13 @@
       color: var(--dark-purple);
     }
 
-    /* Section Titles */
+    /* Layout */
+    .section {
+      padding: 60px 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
     .section-title {
       font-size: 2rem;
       font-weight: 700;
@@ -143,7 +171,7 @@
       position: relative;
       margin-bottom: 2rem;
       text-align: center;
-      text-shadow: 0 0 2px rgba(0, 0, 0, 0.7); /* Subtle shadow for readability */
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
     }
 
     .section-title::after {
@@ -158,12 +186,10 @@
       animation: waveLight 3s linear infinite;
     }
 
-    /* About Section */
-    .about-section p {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--soft-white);
-      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
 
     .card {
@@ -173,6 +199,8 @@
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       position: relative;
       overflow: hidden;
+      padding: 1.25rem;
+      min-height: 160px;
     }
 
     .card:hover {
@@ -181,14 +209,28 @@
     }
 
     .card h3 {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       color: var(--gold);
-      margin-bottom: 1rem;
-      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
+      margin-bottom: 0.75rem;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
     }
 
     .card p {
-      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+      color: var(--soft-white);
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Example code area */
+    pre.code {
+      background: rgba(0,0,0,0.25);
+      border: 1px dashed rgba(255,215,0,0.2);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      color: var(--soft-white);
     }
 
     /* Footer */
@@ -197,6 +239,8 @@
       padding: 2rem 0;
       position: relative;
       overflow: hidden;
+      margin-top: 2rem;
+      text-align: center;
     }
 
     .footer::before {
@@ -213,14 +257,14 @@
     .footer p {
       margin: 0;
       font-size: 0.9rem;
-      color: var(--soft-white); /* Changed to pure white for better contrast */
-      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
+      color: var(--soft-white);
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
     }
 
     .footer a {
       color: var(--gold);
       text-decoration: none;
-      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
     }
 
     .footer a:hover {
@@ -245,6 +289,7 @@
       visibility: hidden;
       transition: all 0.3s ease;
       z-index: 1000;
+      cursor: pointer;
     }
 
     .back-to-top.show {
@@ -279,6 +324,10 @@
     }
 
     /* Responsive Design */
+    @media (max-width: 992px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 768px) {
       .hero-section h1 {
         font-size: 2rem;
@@ -323,139 +372,226 @@
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
       }
+
+      .grid { grid-template-columns: 1fr; }
+      .nav { display: none; } /* keep navbar simple on mobile */
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Tối ưu hóa Website</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#introduction" aria-label="Giới thiệu về tối ưu hóa website">Giới thiệu</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#tips" aria-label="Mẹo tối ưu hóa website cho di động">Mẹo tối ưu</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#techniques" aria-label="Kỹ thuật tối ưu hóa website">Kỹ thuật</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-section" id="hero">
-    <div class="container text-center">
-      <h1>Tối ưu hóa Website cho Di động</h1>
-      <p class="lead mt-3">Tạo giao diện thân thiện với mọi thiết bị để nâng cao trải nghiệm người dùng.</p>
-      <a href="#tips" class="btn btn-primary mt-4" aria-label="Khám phá các mẹo tối ưu hóa website">Khám phá ngay</a>
-    </div>
-  </section>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar-brand">JS Power</div>
+    <nav class="nav" aria-label="main navigation">
+      <div class="nav-link" data-target="#home">Trang Chủ</div>
+      <div class="nav-link" data-target="#why">Tại sao JS?</div>
+      <div class="nav-link" data-target="#examples">Ví dụ</div>
+      <div class="nav-link" data-target="#demo">Demo Tương Tác</div>
+      <div class="nav-link" data-target="#contact">Liên Hệ</div>
+    </nav>
+  </header>
 
-  <!-- Introduction Section -->
-  <section id="introduction" class="about-section py-5">
+  <!-- HERO -->
+  <section id="home" class="hero-section">
     <div class="container">
-      <h2 class="section-title">Giới thiệu</h2>
-      <p class="text-center">Trong thời đại công nghệ số, việc tối ưu hóa website cho thiết bị di động không chỉ là xu hướng mà còn là yếu tố sống còn để thu hút và giữ chân người dùng. Một website thân thiện với di động giúp cải thiện trải nghiệm người dùng, tăng tốc độ tải trang, và nâng cao thứ hạng trên công cụ tìm kiếm.</p>
-    </div>
-  </section>
+      <h1>Sức mạnh của JavaScript trong lập trình web</h1>
+      <p class="lead">Khám phá cách JavaScript giúp trang web của bạn trở nên sống động, tương tác và phản hồi tốt hơn với người dùng — từ thao tác DOM, xử lý sự kiện, tới gọi API và làm animation mượt mà.</p>
 
-  <!-- Tips Section -->
-  <section id="tips" class="py-5">
-    <div class="container">
-      <h2 class="section-title">Mẹo Tối ưu hóa Website cho Di động</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card p-4 text-center">
-            <h3>Thiết kế Responsive</h3>
-            <p>Sử dụng thiết kế responsive để đảm bảo giao diện website tự động điều chỉnh phù hợp với mọi kích thước màn hình.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card p-4 text-center">
-            <h3>Tối ưu Tốc độ Tải</h3>
-            <p>Nén hình ảnh, sử dụng lazy loading, và giảm thiểu mã CSS/JS để tăng tốc độ tải trang.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card p-4 text-center">
-            <h3>Điều hướng Thân thiện</h3>
-            <p>Thiết kế menu điều hướng đơn giản, dễ sử dụng trên màn hình cảm ứng với các nút lớn và khoảng cách hợp lý.</p>
-          </div>
-        </div>
+      <div class="hero-cta">
+        <button class="btn-primary" id="scroll-to-why">Tìm hiểu ngay</button>
       </div>
     </div>
   </section>
 
-  <!-- Techniques Section -->
-  <section id="techniques" class="py-5">
-    <div class="container">
-      <h2 class="section-title">Kỹ thuật Tối ưu hóa</h2>
-      <div class="row">
-        <div class="col-md-6 mb-4">
-          <div class="card p-4">
-            <h3>Sử dụng Media Queries</h3>
-            <p>Áp dụng CSS media queries để tùy chỉnh giao diện dựa trên kích thước và độ phân giải của thiết bị.</p>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="card p-4">
-            <h3>Tối ưu Hình ảnh</h3>
-            <p>Sử dụng định dạng hình ảnh hiện đại như WebP và triển khai responsive images với thuộc tính <code>srcset</code>.</p>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="card p-4">
-            <h3>AMP (Accelerated Mobile Pages)</h3>
-            <p>Sử dụng AMP để tạo các trang web tải nhanh trên di động với nội dung được tối ưu hóa.</p>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="card p-4">
-            <h3>Kiểm tra trên Nhiều Thiết bị</h3>
-            <p>Thử nghiệm website trên các thiết bị và trình duyệt khác nhau để đảm bảo tính nhất quán.</p>
-          </div>
-        </div>
+  <!-- WHY JS -->
+  <section id="why" class="section">
+    <h2 class="section-title">Tại sao JavaScript quan trọng?</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>1. DOM & Manipulation</h3>
+        <p>JavaScript cho phép thay đổi nội dung, cấu trúc và style của trang ngay trong trình duyệt mà không cần tải lại — làm cho trang thật sự "sống".</p>
+      </div>
+
+      <div class="card">
+        <h3>2. Xử lý sự kiện</h3>
+        <p>Sự kiện chuột, bàn phím, cuộn trang... đều được JS bắt và xử lý để tạo trải nghiệm tương tác (form, menu, modal, drag/drop...).</p>
+      </div>
+
+      <div class="card">
+        <h3>3. Giao tiếp mạng</h3>
+        <p>Fetch/AJAX giúp trang tải dữ liệu động từ server (API) mà không cần reload, hỗ trợ SPA, cập nhật nội dung theo thời gian thực.</p>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer text-center">
-    <div class="container">
-      <p>&copy; 2025 Tối ưu hóa Website. All rights reserved.</p>
-      <p class="mt-2">
-        <a href="#hero" aria-label="Liên hệ với chúng tôi">Liên hệ</a> | 
-        <a href="#hero" aria-label="Chính sách bảo mật">Chính sách bảo mật</a>
-      </p>
+  <!-- EXAMPLES -->
+  <section id="examples" class="section" style="padding-top:20px;">
+    <h2 class="section-title">Ví dụ nhanh về sức mạnh JS</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Animation & UI</h3>
+        <p>JS dùng requestAnimationFrame hoặc CSS class toggle để tạo animation mượt và kiểm soát trạng thái giao diện.</p>
+      </div>
+
+      <div class="card">
+        <h3>Form & Validation</h3>
+        <p>Validate dữ liệu ngay khi người dùng gõ, hiển thị lỗi realtime và cải thiện UX so với chỉ validate server-side.</p>
+      </div>
+
+      <div class="card">
+        <h3>API & Data</h3>
+        <p>Gọi API, xử lý JSON, hiển thị dữ liệu vào DOM — ví dụ: bảng, danh sách, hoặc dashboard động.</p>
+      </div>
     </div>
+
+    <div style="margin-top:1.5rem;">
+      <pre class="code"><code>// Ví dụ: fetch dữ liệu API đơn giản
+fetch('https://jsonplaceholder.typicode.com/posts/1')
+  .then(res =&gt; res.json())
+  .then(data =&gt; console.log(data))
+  .catch(err =&gt; console.error(err));</code></pre>
+    </div>
+  </section>
+
+  <!-- DEMO INTERACTIVE -->
+  <section id="demo" class="section" style="padding-top:20px;">
+    <h2 class="section-title">Demo tương tác (Thử ngay)</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Thêm mục vào danh sách</h3>
+        <p>Nhập tên và nhấn <strong>Thêm</strong> — JavaScript sẽ tạo phần tử DOM mới.</p>
+        <div style="margin-top:0.75rem;">
+          <input id="item-input" type="text" placeholder="Nhập nội dung..." style="width:100%; padding:0.6rem; border-radius:6px; border:1px solid rgba(255,215,0,0.15); background:transparent; color:var(--soft-white);">
+          <div style="display:flex; gap:0.5rem; margin-top:0.6rem;">
+            <button class="btn-primary" id="add-item">Thêm</button>
+            <button class="btn-primary" id="clear-list">Xóa hết</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="grid-column: span 2;">
+        <h3>Danh sách (DOM live)</h3>
+        <p>Danh sách sẽ cập nhật tức thì khi thao tác.</p>
+        <ul id="live-list" style="margin-top:0.75rem; padding-left:1.1rem; color:var(--soft-white);"></ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section" style="padding-top:20px; padding-bottom:40px;">
+    <h2 class="section-title">Liên hệ & Tài nguyên</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Tài nguyên học</h3>
+        <p>MDN Web Docs, JavaScript.info, và các khoá học interactive giúp nắm vững JS từ cơ bản đến nâng cao.</p>
+      </div>
+
+      <div class="card">
+        <h3>Muốn biết thêm?</h3>
+        <p>Nếu anh/chị cần demo sâu hơn (SPA, WebSocket, hoặc animation nâng cao), em có thể bổ sung ví dụ riêng theo yêu cầu.</p>
+      </div>
+
+      <div class="card">
+        <h3>Gửi email</h3>
+        <p>Email: <a href="mailto:example@example.com" style="color:var(--gold);">example@example.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 Sức mạnh của JavaScript. All rights reserved. • Thiết kế demo bởi bạn.</p>
   </footer>
 
-  <!-- Back to Top Button -->
-  <a href="#hero" class="back-to-top" aria-label="Quay lại đầu trang">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 5l-7 7h5v7h4v-7h5l-7-7z"/>
-    </svg>
-  </a>
+  <!-- BACK TO TOP -->
+  <div class="back-to-top" id="backTop" title="Lên đầu trang">↑</div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Back to Top Script -->
+  <!-- SCRIPTS -->
   <script>
-    window.addEventListener('scroll', function() {
-      const backToTop = document.querySelector('.back-to-top');
-      if (window.scrollY > 300) {
-        backToTop.classList.add('show');
-      } else {
-        backToTop.classList.remove('show');
+    // Navigation click -> scroll
+    document.querySelectorAll('.nav-link').forEach(el => {
+      el.addEventListener('click', () => {
+        const target = document.querySelector(el.getAttribute('data-target'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    document.getElementById('scroll-to-why').addEventListener('click', () => {
+      document.querySelector('#why').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Back to top button
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) backTop.classList.add('show');
+      else backTop.classList.remove('show');
+    });
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Simple demo: dynamic list (DOM manipulation & events)
+    const input = document.getElementById('item-input');
+    const addBtn = document.getElementById('add-item');
+    const clearBtn = document.getElementById('clear-list');
+    const liveList = document.getElementById('live-list');
+
+    function createListItem(text) {
+      const li = document.createElement('li');
+      li.textContent = text;
+      li.style.marginBottom = '0.5rem';
+      li.style.cursor = 'pointer';
+      // click to remove single item (demonstrate event handling & delegation)
+      li.addEventListener('click', () => {
+        li.remove();
+      });
+      return li;
+    }
+
+    addBtn.addEventListener('click', () => {
+      const val = input.value.trim();
+      if (!val) {
+        // small animated feedback
+        input.style.borderColor = 'var(--gold-hover)';
+        setTimeout(() => input.style.borderColor = 'rgba(255,215,0,0.15)', 600);
+        return;
       }
+      const item = createListItem(val);
+      liveList.appendChild(item);
+      input.value = '';
+      input.focus();
+    });
+
+    clearBtn.addEventListener('click', () => {
+      liveList.innerHTML = '';
+    });
+
+    // Example: small "mock fetch" to show asynchronous JS
+    // (demonstrates promise + DOM update)
+    (function mockFetchDemo(){
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.marginTop = '1rem';
+      card.innerHTML = '<h3>Demo fetch giả</h3><p id="fetch-status">Đang chờ dữ liệu...</p>';
+      document.querySelector('#demo .grid').appendChild(card);
+
+      // Simulate async fetch
+      new Promise((resolve) => {
+        setTimeout(() => resolve({ title: 'Dữ liệu từ server', body: 'Đây là nội dung mô phỏng.' }), 1500);
+      }).then(data => {
+        document.getElementById('fetch-status').textContent = data.title + ' — ' + data.body;
+      }).catch(() => {
+        document.getElementById('fetch-status').textContent = 'Tải dữ liệu thất bại';
+      });
+    })();
+
+    // small accessibility: focus visible outline for keyboard users
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') document.body.classList.add('user-tabbed');
     });
   </script>
 </body>
